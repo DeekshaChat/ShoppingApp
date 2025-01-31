@@ -1,4 +1,11 @@
-export default function Cart({ items, onUpdateItemQuantity }) {
+import { use } from "react";
+import { CartContext } from "../store/shopping-cart";
+
+export default function Cart() {
+  // use and useContext are similar, if we are using React 19 or higher we can use use in place of useContext. 
+  // As use provide us the facility to access it in if statement as well while useContext is not accessed in if statement
+  const {items, updateItemQuantity} = use(CartContext); 
+
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
@@ -20,11 +27,11 @@ export default function Cart({ items, onUpdateItemQuantity }) {
                   <span> ({formattedPrice})</span>
                 </div>
                 <div className="cart-item-actions">
-                  <button onClick={() => onUpdateItemQuantity(item.id, -1)}>
+                  <button onClick={() => updateItemQuantity(item.id, -1)}>
                     -
                   </button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => onUpdateItemQuantity(item.id, 1)}>
+                  <button onClick={() => updateItemQuantity(item.id, 1)}>
                     +
                   </button>
                 </div>
