@@ -1,4 +1,4 @@
-import { use } from "react";
+import { use, useReducer } from "react";
 import { CartContext } from "../store/shopping-cart";
 
 export default function Cart() {
